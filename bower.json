@@ -1,0 +1,26 @@
+{
+  "name": "JuanValdezOnline",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Subv <subv2112@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Subv/JuanValdezOnline",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+        "bootstrap": "latest",
+        "font-awesome": "latest",
+        "animate.css": "latest",
+        "angular": "latest",
+        "angular-ui-router": "latest",
+        "angular-cookies": "latest" 
+    }
+}
