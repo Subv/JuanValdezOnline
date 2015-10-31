@@ -1,31 +1,31 @@
 .order-heading {
-	font-weight: 700;
-	font-size: 14px;
+    font-weight: 700;
+    font-size: 14px;
 }
 
 .order-panel {
-	margin-top: 70px;
+    margin-top: 70px;
 }
 
 .order-table-container {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 .location-heading {
-	font-size: 15px;
+    font-size: 15px;
 }
 
 .location-heading-top {
-	margin-top: 25px;
+    margin-top: 25px;
 }
 
 .coffee-description {
-	word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .order-total {
-	font-weight: 700;
-	font-size: 20px;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .delete-item-icon {

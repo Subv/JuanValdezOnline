@@ -1,36 +1,36 @@
 angular.module('LoginSrv', ["ngCookies"]).factory("LoginService", ["$rootScope", "$http", "$cookieStore", function($rootScope, $http, $cookieStore) {
-	var service = {};
+    var service = {};
 
-	service.Authenticate = function(username, password, callback) {
-		$http.post("/api/authenticate", { username: username, password: password })
-			.success(function(response) {
-				callback(response);
-			});
-	};
+    service.Authenticate = function(username, password, callback) {
+        $http.post("/api/authenticate", { username: username, password: password })
+            .success(function(response) {
+                callback(response);
+            });
+    };
 
-	service.Register = function(username, password, name, lastName, card, callback) {
-		$http.post("/api/register", {
-			username: username,
-			password: password,
-			name: name,
-			lastName: lastName,
-			card: card
-		}).success(function(response) {
-			callback(response);
-		})
-	}
+    service.Register = function(username, password, name, lastName, card, callback) {
+        $http.post("/api/register", {
+            username: username,
+            password: password,
+            name: name,
+            lastName: lastName,
+            card: card
+        }).success(function(response) {
+            callback(response);
+        })
+    }
 
-	service.ClearCredentials = function() {
-		$rootScope.globals = {};
+    service.ClearCredentials = function() {
+        $rootScope.globals = {};
         $cookieStore.remove('globals');
         $http.defaults.headers.common.Authorization = 'Basic ';
-	};
+    };
 
-	service.SetCredentials = function(username, password, info) {
-		var authdata = Base64.encode(username + ':' + password);
+    service.SetCredentials = function(username, password, info) {
+        var authdata = Base64.encode(username + ':' + password);
  
         $rootScope.globals = {
-        	authenticated: true,
+            authenticated: true,
 
             currentUser: {
                 username: username,
@@ -41,10 +41,10 @@ angular.module('LoginSrv', ["ngCookies"]).factory("LoginService", ["$rootScope",
 
         $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
         $cookieStore.put('globals', $rootScope.globals);
-	};
+    };
 
-	var Base64 = {
-		keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
+    var Base64 = {
+        keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
  
         encode: function (input) {
             var output = "";
@@ -123,5 +123,5 @@ angular.module('LoginSrv', ["ngCookies"]).factory("LoginService", ["$rootScope",
         }
     };
 
-	return service;
+    return service;
 }]);

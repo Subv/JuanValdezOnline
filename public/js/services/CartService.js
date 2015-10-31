@@ -1,19 +1,20 @@
 angular.module("CartSrv", []).factory("CartService", ["$rootScope", function($rootScope) {
-	var service = {};
+    var service = {};
 
-	service.items = [];
+    service.items = [];
+    service.location = {};
 
-	service.AddItem = function(item) {
-		service.items.push(item);
-	};
+    service.AddItem = function(item) {
+        service.items.push(item);
+    };
 
-	service.RemoveItem = function(id) {
-		service.items.splice(id, 1);
-	};
+    service.RemoveItem = function(id) {
+        service.items.splice(id, 1);
+    };
 
-	service.EmptyCart = function() {
-		service.items.splice(0, service.items.length);
-	};
+    service.EmptyCart = function() {
+        service.items.splice(0, service.items.length);
+    };
 
     service.CalculateTotal = function() {
         var total = 0;
@@ -24,5 +25,5 @@ angular.module("CartSrv", []).factory("CartService", ["$rootScope", function($ro
         return total;
     };
 
-	return service;
+    return service;
 }]);

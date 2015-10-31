@@ -1,137 +1,17 @@
 <form>
-	<div class="row">
-		<div class="col-md-3">
-			Bienvenido {{firstName}}
-		</div>
-		<div class="col-md-8"></div>
-		<div class="col-md-1">
-			<button class="btn btn-default" ng-click="logout()">Logout</button>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="form-group">
-						<label for="coffeeType">Escoge el tipo de café que prefieras: </label>
-						<select ng-model="selectedCoffee" ng-options="coffee.Name for coffee in coffees track by coffee.Name" id="coffeeType" class="form-control">
-                            <option value="">Select a coffee</option>                  
-                        </select>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="form-group">
-						<label for="coffeeSize">Escoge el tamaño de tu vaso: </label>
-						<select ng-model="selectedSize" ng-options="size.Name for size in selectedCoffee.Sizes track by size.Name" id="coffeeSize" class="form-control">
-                            <option value="">Select a size</option>                  
-                        </select>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 form-inline">
-					<div class="form-group">
-						<label for="coffeeAmount">Cantidad: </label>
-						<input type="number" min="1" ng-model="selectedAmount" id="coffeeAmount" class="form-control" />
-					</div>
-				</div>
-				<div class="col-md-2"></div>
-				<div class="col-md-3">
-					<button ng-show="selectedCoffee != undefined && selectedSize.Name != undefined" ng-click="addItemToCart()" class="btn btn-default"><i class="fa fa-cart-arrow-down"></i> Agregar al carrito</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-10 help-block coffee-description">
-					<p>{{selectedCoffee.Description}}</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="form-group"></div>
-	<div class="row order-panel">
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-12">
-					<span class="order-heading">Tu pedido:</span>
-				</div>
-			</div>
-			<div class="row order-table-container">
-				<div class="col-md-12">
-					<table class="table table-hover">
-						<thead>
-							<th>Cafe</th>
-							<th>Tamaño</th>
-							<th>Cantidad</th>
-							<th>Precio</th>
-							<th></th>
-						</thead>
-						<tbody>
-							<tr class="animated fadeIn" ng-repeat="item in cartItems">
-								<td>{{item.Name}}</td>
-								<td>{{item.Size}}</td>
-								<td>{{item.Amount}}</td>
-								<td>${{item.Price}}</td>
-								<td><span ng-click="removeItem($index)" class="delete-item-icon"><i class="fa fa-times"></i></span></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-12">
-					<button ng-click="emptyCart()" class="btn btn-danger"><i class="fa fa-trash"></i> Vaciar</button>
-				</div>
-			</div>
-			<div class="row location-heading-top">
-				<div class="col-md-9">
-					<p class="location-heading">¡Dános tu ubicación para hacerte llegar tu pedido!</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-1">
-					<button ng-click="fillLocation()" type="button" class="btn btn-default">Usar Ubicación</button>
-				</div>
-			</div>
-			<div class="form-group"></div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="row form-inline form-group">
-						<div class="col-md-3">
-							<label for="latitude">Latitud: </label>
-						</div>
-						<div class="col-md-6">
-							<input ng-model="coords.latitude" type="text" id="latitude" class="form-control" />
-						</div>
-					</div>
-					<div class="row form-inline form-group">
-						<div class="col-md-3">
-							<label for="longitude">Longitud: </label>
-						</div>
-						<div class="col-md-6">
-							<input ng-model="coords.longitude" type="text" id="longitude" class="form-control" />
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6 order-total">
-					<span>Total Compra: $</span><span>{{getRunningTotal()}}</span>
-				</div>
-			</div>
-			<div class="form-group"></div>
-			<div class="row">
-				<div class="col-md-6">
-					<button type="button" class="btn btn-success"><i class="fa fa-check"></i> Confirmar</button>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-md-3">
+            Bienvenido {{firstName}}
+        </div>
+        <div class="col-md-8"></div>
+        <div class="col-md-1">
+            <button class="btn btn-default" ng-click="logout()">Logout</button>
+        </div>
+    </div>
+    <div class="row" ng-show="currState.current.name == 'home.default.pay'">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-default" ng-click="goToOrder()">Order</button>
+        </div>
+    </div>
+    <div ui-view></div>
 </form>
