@@ -1,4 +1,5 @@
 var Users = require("./models/users");
+var Coffee = require("./models/coffee");
 
 module.exports = function(app) {
 	app.post("/api/authenticate", function(req, res) {
@@ -47,6 +48,14 @@ module.exports = function(app) {
 			});
 		});
 	});
+
+    app.get("/api/coffees", function(req, res) {
+        Coffee.find({}, function(err, coffees) {
+            if (err)
+                res.send(err);
+            res.json(coffees);
+        });
+    });
 
 	app.get('*', function(req, res) {
 		res.sendfile('./public/views/index.html');
