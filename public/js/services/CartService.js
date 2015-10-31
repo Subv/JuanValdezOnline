@@ -15,5 +15,14 @@ angular.module("CartSrv", []).factory("CartService", ["$rootScope", function($ro
 		service.items.splice(0, service.items.length);
 	};
 
+    service.CalculateTotal = function() {
+        var total = 0;
+        service.items.forEach(function(item) {
+            total += item.Price;
+        });
+
+        return total;
+    };
+
 	return service;
 }]);

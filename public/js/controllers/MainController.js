@@ -39,4 +39,8 @@ angular.module('MainCtrl', ['ngGeolocation', 'LoginSrv', 'CartSrv', 'CoffeeSrv']
     $scope.emptyCart = function() {
         CartService.EmptyCart();
     };
+
+    $scope.getRunningTotal = function() {
+        return CartService.CalculateTotal();
+    };
 }]);
