@@ -22,3 +22,8 @@
 .coffee-description {
 	word-wrap: break-word;
 }
+
+.order-total {
+	font-weight: 700;
+	font-size: 20px;
+}
