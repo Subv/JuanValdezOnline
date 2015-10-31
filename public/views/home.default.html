@@ -71,27 +71,12 @@
 							<th></th>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Capuccino</td>
-								<td>Grande</td>
-								<td>3</td>
-								<td>$3000</td>
-								<td><i class="fa fa-times"></i></td>
-							</tr>
-							<tr>
-								<td>Capuccino</td>
-								<td>Grande</td>
-								<td>3</td>
-								<td>$3000</td>
-								<td><i class="fa fa-times"></i></td>
-							</tr>
-
 							<tr class="animated fadeIn" ng-repeat="item in cartItems">
 								<td>{{item.Name}}</td>
 								<td>{{item.Size}}</td>
 								<td>{{item.Amount}}</td>
 								<td>${{item.Price}}</td>
-								<td><i class="fa fa-times"></i></td>
+								<td><span ng-click="removeItem($index)" class="delete-item-icon"><i class="fa fa-times"></i></span></td>
 							</tr>
 						</tbody>
 					</table>
