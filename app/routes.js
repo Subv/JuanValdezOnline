@@ -7,8 +7,7 @@ module.exports = function(app) {
 		console.log(req.body.username);
 		console.log(req.body.password);
 
-		var query = Users.where({ Username: req.body.username, Password: req.body.password });
-		query.findOne(function(err, user) {
+		Users.findOne({ Username: req.body.username, Password: req.body.password }, "-Password", function(err, user) {
 			if (err)
 				res.send(err);
 			
