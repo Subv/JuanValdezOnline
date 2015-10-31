@@ -21,6 +21,7 @@
         "animate.css": "latest",
         "angular": "latest",
         "angular-ui-router": "latest",
-        "angular-cookies": "latest" 
+        "angular-cookies": "latest",
+        "angularjs-geolocation": "latest"
     }
 }
