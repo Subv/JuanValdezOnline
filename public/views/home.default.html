@@ -106,13 +106,19 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-md-1">
+					<button ng-click="fillLocation()" type="button" class="btn btn-default">Usar Ubicación</button>
+				</div>
+			</div>
+			<div class="form-group"></div>
+			<div class="row">
 				<div class="col-md-6">
 					<div class="row form-inline form-group">
 						<div class="col-md-3">
 							<label for="latitude">Latitud: </label>
 						</div>
 						<div class="col-md-6">
-							<input type="text" id="latitude" class="form-control" />
+							<input ng-model="coords.lat" type="text" id="latitude" class="form-control" />
 						</div>
 					</div>
 					<div class="row form-inline form-group">
@@ -120,7 +126,7 @@
 							<label for="longitude">Longitud: </label>
 						</div>
 						<div class="col-md-6">
-							<input type="text" id="longitude" class="form-control" />
+							<input ng-model="coords.long" type="text" id="longitude" class="form-control" />
 						</div>
 					</div>
 				</div>

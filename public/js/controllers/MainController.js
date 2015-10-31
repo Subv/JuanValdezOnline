@@ -1,6 +1,12 @@
-angular.module('MainCtrl', ['LoginSrv', 'CartSrv']).controller('MainController', ['$rootScope', '$scope', '$state', 'LoginService', 'CartService', function($rootScope, $scope, $state, LoginService, CartService) {
+angular.module('MainCtrl', ['geolocation', 'LoginSrv', 'CartSrv']).controller('MainController', ['$rootScope', '$scope', '$state', 'geolocation', 'LoginService', 'CartService', function($rootScope, $scope, $state, geolocation, LoginService, CartService) {
     $scope.firstName = $rootScope.globals.currentUser.info.Name;
     $scope.cartItems = CartService.items;
+
+    $scope.fillLocation = function() {
+        geolocation.getLocation().then(function(data) {
+            $scope.coords = { lat: data.coords.latitude, long: data.coords.longitude };
+        });
+    };
 
     $scope.logout = function() {
         LoginService.ClearCredentials();
