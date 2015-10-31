@@ -1,4 +1,4 @@
-var app = angular.module('JuanValdezOnline', ['ui.router', 'appRoutes', 'ngCookies', 'LoginSrv', 'MainCtrl', 'LoginCtrl', 'RegisterCtrl']);
+var app = angular.module('JuanValdezOnline', ['ui.router', 'appRoutes', 'ngCookies', 'LoginSrv', 'CartSrv', 'MainCtrl', 'LoginCtrl', 'RegisterCtrl']);
 app.run(["$rootScope", "$cookieStore", "$http", "$state", function($rootScope, $cookieStore, $http, $state) {
 	$rootScope.globals = $cookieStore.get("globals") || {};
 	if ($rootScope.globals.currentUser) {
