@@ -5,7 +5,7 @@ var coffeeSchema = new Schema({
 	Name: String,
 	Description: String,
 	Sizes: [{
-		Names: String,
+		Name: String,
 		Price: Number
 	}]
 	
