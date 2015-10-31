@@ -1,11 +1,13 @@
-angular.module('MainCtrl', ['geolocation', 'LoginSrv', 'CartSrv']).controller('MainController', ['$rootScope', '$scope', '$state', 'geolocation', 'LoginService', 'CartService', function($rootScope, $scope, $state, geolocation, LoginService, CartService) {
+angular.module('MainCtrl', ['ngGeolocation', 'LoginSrv', 'CartSrv']).controller('MainController', ['$rootScope', '$scope', '$state', '$geolocation', 'LoginService', 'CartService', function($rootScope, $scope, $state, $geolocation, LoginService, CartService) {
     $scope.firstName = $rootScope.globals.currentUser.info.Name;
     $scope.cartItems = CartService.items;
 
     $scope.fillLocation = function() {
-        geolocation.getLocation().then(function(data) {
-            $scope.coords = { lat: data.coords.latitude, long: data.coords.longitude };
-        });
+        $geolocation.getCurrentPosition({
+            timeout: 60000
+         }).then(function(position) {
+            $scope.coords = position.coords;
+         });
     };
 
     $scope.logout = function() {

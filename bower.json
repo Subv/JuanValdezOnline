@@ -22,6 +22,6 @@
         "angular": "latest",
         "angular-ui-router": "latest",
         "angular-cookies": "latest",
-        "angularjs-geolocation": "latest"
+        "ngGeolocation": "latest"
     }
 }
