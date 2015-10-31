@@ -1,6 +1,12 @@
-angular.module('MainCtrl', ['ngGeolocation', 'LoginSrv', 'CartSrv']).controller('MainController', ['$rootScope', '$scope', '$state', '$geolocation', 'LoginService', 'CartService', function($rootScope, $scope, $state, $geolocation, LoginService, CartService) {
+angular.module('MainCtrl', ['ngGeolocation', 'LoginSrv', 'CartSrv', 'CoffeeSrv'])
+    .controller('MainController', ['$rootScope', '$scope', '$state', '$geolocation', 'LoginService', 'CartService', 'CoffeeService', 
+        function($rootScope, $scope, $state, $geolocation, LoginService, CartService, CoffeeService) {
     $scope.firstName = $rootScope.globals.currentUser.info.Name;
     $scope.cartItems = CartService.items;
+    $scope.coffees = CoffeeService.coffees;
+    $scope.selectedAmount = 1;
+
+    CoffeeService.GetCoffees();
 
     $scope.fillLocation = function() {
         $geolocation.getCurrentPosition({
@@ -16,11 +22,17 @@ angular.module('MainCtrl', ['ngGeolocation', 'LoginSrv', 'CartSrv']).controller(
     };
 
     $scope.addItemToCart = function() {
-        CartService.AddItem({ Name: 'tst', Size: 'Grande', Price: 3000, Amount: 12 });
+        if ($scope.selectedCoffee != undefined && $scope.selectedSize.Name != undefined) {
+            CartService.AddItem({ 
+                Name: $scope.selectedCoffee.Name, 
+                Size: $scope.selectedSize.Name, 
+                Price: $scope.selectedSize.Price * $scope.selectedAmount, 
+                Amount: $scope.selectedAmount 
+            });
+        }
     };
 
     $scope.emptyCart = function() {
         CartService.EmptyCart();
     };
-
 }]);

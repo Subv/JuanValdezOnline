@@ -14,7 +14,9 @@
 				<div class="col-md-12">
 					<div class="form-group">
 						<label for="coffeeType">Escoge el tipo de café que prefieras: </label>
-						<select id="coffeeType" class="form-control"></select>
+						<select ng-model="selectedCoffee" ng-options="coffee.Name for coffee in coffees track by coffee.Name" id="coffeeType" class="form-control">
+                            <option value="">Select a coffee</option>                  
+                        </select>
 					</div>
 				</div>
 			</div>
@@ -22,7 +24,9 @@
 				<div class="col-md-12">
 					<div class="form-group">
 						<label for="coffeeSize">Escoge el tamaño de tu vaso: </label>
-						<select id="coffeeSize" class="form-control"></select>
+						<select ng-model="selectedSize" ng-options="size.Name for size in selectedCoffee.Sizes track by size.Name" id="coffeeSize" class="form-control">
+                            <option value="">Select a size</option>                  
+                        </select>
 					</div>
 				</div>
 			</div>
@@ -30,12 +34,12 @@
 				<div class="col-md-6 form-inline">
 					<div class="form-group">
 						<label for="coffeeAmount">Cantidad: </label>
-						<input type="number" min="1" id="coffeeAmount" class="form-control" />
+						<input type="number" min="1" ng-model="selectedAmount" id="coffeeAmount" class="form-control" />
 					</div>
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-3">
-					<button ng-click="addItemToCart()" class="btn btn-default"><i class="fa fa-cart-arrow-down"></i> Agregar al carrito</button>
+					<button ng-show="selectedCoffee != undefined && selectedSize.Name != undefined" ng-click="addItemToCart()" class="btn btn-default"><i class="fa fa-cart-arrow-down"></i> Agregar al carrito</button>
 				</div>
 			</div>
 		</div>
@@ -43,7 +47,7 @@
 		<div class="col-md-6">
 			<div class="row">
 				<div class="col-md-10 help-block coffee-description">
-					<p>Descripción...segswdfgsdergwergertherghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherth</p>
+					<p>{{selectedCoffee.Description}}</p>
 				</div>
 			</div>
 		</div>
@@ -86,7 +90,7 @@
 								<td>{{item.Name}}</td>
 								<td>{{item.Size}}</td>
 								<td>{{item.Amount}}</td>
-								<td>${{item.Amount}}</td>
+								<td>${{item.Price}}</td>
 								<td><i class="fa fa-times"></i></td>
 							</tr>
 						</tbody>
