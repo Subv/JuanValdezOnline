@@ -23,7 +23,7 @@ module.exports = function(app) {
 		console.log(req.body);
 
 		// Verificar que el usuario no exista
-		var count = Users.where({ Username: req.body.username }).count(function(err, count) {
+		Users.where({ Username: req.body.username }).count(function(err, count) {
 			if (err)
 				res.send(err);
 

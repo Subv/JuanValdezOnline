@@ -1,4 +1,122 @@
-Cafe
-wiiiiiiiiiiiiiii
-:D
-<button ng-click="logout()">Logout</button>
+<form>
+	<div class="row">
+		<div class="col-md-3">
+			Bienvenido {{firstName}}
+		</div>
+		<div class="col-md-8"></div>
+		<div class="col-md-1">
+			<button class="btn btn-default" ng-click="logout()">Logout</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="coffeeType">Escoge el tipo de café que prefieras: </label>
+						<select id="coffeeType" class="form-control"></select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="coffeeSize">Escoge el tamaño de tu vaso: </label>
+						<select id="coffeeSize" class="form-control"></select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 form-inline">
+					<div class="form-group">
+						<label for="coffeeAmount">Cantidad: </label>
+						<input type="number" min="1" id="coffeeAmount" class="form-control" />
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+				<div class="col-md-3">
+					<button class="btn btn-default"><i class="fa fa-cart-arrow-down"></i> Agregar al carrito</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-10 help-block coffee-description">
+					<p>Descripción...segswdfgsdergwergertherghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherththerghedfghdfghrdhrdtherth</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group"></div>
+	<div class="row order-panel">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-12">
+					<span class="order-heading">Tu pedido:</span>
+				</div>
+			</div>
+			<div class="row order-table-container">
+				<div class="col-md-12">
+					<table class="table table-hover">
+						<thead>
+							<th>Cafe</th>
+							<th>Tamaño</th>
+							<th>Cantidad</th>
+							<th>Precio</th>
+							<th></th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Capuccino</td>
+								<td>Grande</td>
+								<td>3</td>
+								<td>$3000</td>
+								<td><i class="fa fa-times"></i>
+</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-default"><i class="fa fa-trash"></i> Vaciar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row location-heading-top">
+		<div class="col-md-9">
+			<p class="location-heading">¡Dános tu ubicación para hacerte llegar tu pedido!</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="row form-inline form-group">
+				<div class="col-md-3">
+					<label for="latitude">Latitud: </label>
+				</div>
+				<div class="col-md-6">
+					<input type="text" id="latitude" class="form-control" />
+				</div>
+			</div>
+			<div class="row form-inline form-group">
+				<div class="col-md-3">
+					<label for="longitude">Longitud: </label>
+				</div>
+				<div class="col-md-6">
+					<input type="text" id="longitude" class="form-control" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<span>Total Compra</span>
+		</div>
+	</div>
+</form>
