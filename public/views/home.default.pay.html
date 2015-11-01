@@ -10,6 +10,14 @@
         </div>
         <div class="row">
             <div class="col-md-7">
+                <div class="alert alert-info" role="alert">
+                    <i class="fa fa-bell-o"></i>
+                    Recibe {{price / 10}} puntos si pagas con tarjeta
+                </div> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
                 <div class="form-group">
                     <label for="paymentMethod">Escoge el tipo de pago: </label>
                     <select ng-model="selectedPaymentMethod" id="paymentMethod" class="form-control">
@@ -38,7 +46,22 @@
         </div>
         <div class="row">
             <div class="col-md-7">
-                Botones
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="button" ng-click="editOrder()" class="btn btn-default">Editar pedido</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" ng-class="{ disabled: !canPay() }" ng-click="pay()" class="btn btn-default">Pagar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <span class="spacer"></span>
+        <div class="row">
+            <div class="col-md-12">
+                Total a pagar: ${{price}}
             </div>
         </div>
     </div>

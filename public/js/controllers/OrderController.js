@@ -19,7 +19,8 @@ angular.module('OrderCtrl', ['ngGeolocation', 'CartSrv', 'CoffeeSrv'])
 
     $scope.addItemToCart = function() {
         if ($scope.canAddToCart()) {
-            CartService.AddItem({ 
+            CartService.AddItem({
+                Id: $scope.selectedCoffee._id, 
                 Name: $scope.selectedCoffee.Name, 
                 Size: $scope.selectedSize.Name, 
                 Price: $scope.selectedSize.Price * $scope.selectedAmount, 

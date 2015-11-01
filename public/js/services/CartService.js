@@ -1,10 +1,19 @@
-angular.module("CartSrv", []).factory("CartService", ["$rootScope", function($rootScope) {
+angular.module("CartSrv", []).factory("CartService", ["$rootScope", "$http", function($rootScope, $http) {
     var service = {};
 
     service.items = [];
     service.location = {};
 
     service.AddItem = function(item) {
+        for (var i = 0; i < service.items.length; ++i) {
+            var elem = service.items[i];
+            if (elem.Name === item.Name && elem.Size == item.Size) {
+                elem.Amount += item.Amount;
+                elem.Price += item.Price;
+                return;
+            }
+        }
+
         service.items.push(item);
     };
 
@@ -23,6 +32,15 @@ angular.module("CartSrv", []).factory("CartService", ["$rootScope", function($ro
         });
 
         return total;
+    };
+
+    service.Pay = function(method, callback) {
+        $http.post("/api/pay", {
+            method: method,
+            items: service.items
+        }).success(function(response) {
+            callback(response);
+        });
     };
 
     return service;

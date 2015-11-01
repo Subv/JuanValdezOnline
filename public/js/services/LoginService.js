@@ -43,6 +43,14 @@ angular.module('LoginSrv', ["ngCookies"]).factory("LoginService", ["$rootScope",
         $cookieStore.put('globals', $rootScope.globals);
     };
 
+    service.SetUserInfo = function(info) {
+        if (!$rootScope.globals.authenticated)
+            return;
+        
+        $rootScope.globals.currentUser.info = info;
+        $cookieStore.put('globals', $rootScope.globals);
+    };
+
     var Base64 = {
         keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
  
