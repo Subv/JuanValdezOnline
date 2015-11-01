@@ -4,10 +4,11 @@ angular.module('PayCtrl', ['CartSrv'])
     $scope.cartItems = CartService.items;
     $scope.points = $rootScope.globals.currentUser.info.Points;
 
-    $scope.mostrarAlert=function(){
-        if($scope.selectedPaymentMethod==="0" && $scope.points<CartService.CalculateTotal()){
-            return true;
-        }
-        return false;
+    $scope.mostrarPointsErrorAlert = function() {
+        return $scope.selectedPaymentMethod === "0" && $scope.points < CartService.CalculateTotal();
+    };
+
+    $scope.mostrarPointsOKAlert = function() {
+        return $scope.selectedPaymentMethod === "0" && $scope.points >= CartService.CalculateTotal();
     };
 }]);

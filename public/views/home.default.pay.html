@@ -20,11 +20,25 @@
                 </div>
             </div>
         </div>
+        <div class="row animated fadeIn" ng-show="mostrarPointsErrorAlert()">
+            <div class="col-md-7">
+                <div class="alert alert-danger" role="alert">
+                    <i class="fa fa-exclamation-triangle"></i>
+                    No tienes puntos suficientes
+                </div> 
+            </div>
+        </div>
+        <div class="row animated fadeIn" ng-show="mostrarPointsOKAlert()">
+            <div class="col-md-7">
+                <div class="alert alert-success" role="alert">
+                    <i class="fa fa-heart-o"></i>
+                    Tienes puntos suficientes!
+                </div> 
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-7">
-                <div class="alert alert-danger" ng-show="mostrarAlert()" role="alert"><i class="fa fa-exclamation-triangle"></i>
-                No tienes puntos suficientes
-                </div> 
+                Botones
             </div>
         </div>
     </div>
