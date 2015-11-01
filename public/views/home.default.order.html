@@ -120,7 +120,7 @@
         <div class="form-group"></div>
         <div class="row">
             <div class="col-md-6">
-                <button ng-click="confirm()" type="button" class="btn btn-success"><i class="fa fa-check"></i> Confirmar</button>
+                <button ng-click="confirm()" type="button" ng-class="{disabled: cartItems.length == 0}" class="btn btn-success"><i class="fa fa-check"></i> Confirmar</button>
             </div>
         </div>
     </div>

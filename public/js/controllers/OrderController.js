@@ -41,6 +41,8 @@ angular.module('OrderCtrl', ['ngGeolocation', 'CartSrv', 'CoffeeSrv'])
     };
 
     $scope.confirm = function() {
+        if ($state.cartItems.length == 0)
+            return;
         $state.go("home.default.pay");
     };
 }]);
