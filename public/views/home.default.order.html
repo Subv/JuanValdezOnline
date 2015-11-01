@@ -39,6 +39,11 @@
         <div class="row">
             <div class="col-md-10 help-block coffee-description">
                 <p>{{selectedCoffee.Description}}</p>
+                <p>
+                    <ul class="list-unstyled">
+                        <li ng-repeat="size in selectedCoffee.Sizes">{{size.Name}}: ${{size.Price}}</li>
+                    </ul>
+                </p>
             </div>
         </div>
     </div>

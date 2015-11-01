@@ -47,6 +47,6 @@ angular.module('OrderCtrl', ['ngGeolocation', 'CartSrv', 'CoffeeSrv'])
     };
 
     $scope.canAddToCart = function() {
-        return $scope.selectedCoffee != undefined && $scope.selectedSize != undefined;
+        return $scope.selectedCoffee != undefined && $scope.selectedSize != undefined && $scope.selectedAmount > 0;
     };
 }]);
