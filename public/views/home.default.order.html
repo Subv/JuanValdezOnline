@@ -103,7 +103,7 @@
                         <label for="latitude">Latitud: </label>
                     </div>
                     <div class="col-md-6">
-                        <input ng-model="coords.latitude" type="text" id="latitude" class="form-control" />
+                        <input required ng-model="coords.latitude" type="text" id="latitude" class="form-control" />
                     </div>
                 </div>
                 <div class="row form-inline form-group">
@@ -111,12 +111,11 @@
                         <label for="longitude">Longitud: </label>
                     </div>
                     <div class="col-md-6">
-                        <input ng-model="coords.longitude" type="text" id="longitude" class="form-control" />
+                        <input required ng-model="coords.longitude" type="text" id="longitude" class="form-control" />
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-md-6 order-total">
                 <span>Total Compra: $</span><span>{{getRunningTotal()}}</span>
@@ -125,7 +124,7 @@
         <div class="form-group"></div>
         <div class="row">
             <div class="col-md-6">
-                <button ng-click="confirm()" type="button" ng-class="{disabled: cartItems.length == 0}" class="btn btn-success"><i class="fa fa-check"></i> Confirmar</button>
+                <button ng-click="confirm()" type="button" ng-class="{disabled: !canSubmitOrder()}" class="btn btn-success"><i class="fa fa-check"></i> Confirmar</button>
             </div>
         </div>
     </div>

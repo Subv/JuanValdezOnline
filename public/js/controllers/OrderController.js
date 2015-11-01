@@ -41,12 +41,16 @@ angular.module('OrderCtrl', ['ngGeolocation', 'CartSrv', 'CoffeeSrv'])
     };
 
     $scope.confirm = function() {
-        if ($scope.cartItems.length == 0)
+        if (!$scope.canSubmitOrder())
             return;
         $state.go("home.default.pay");
     };
 
     $scope.canAddToCart = function() {
         return $scope.selectedCoffee != undefined && $scope.selectedSize != undefined && $scope.selectedAmount > 0;
+    };
+
+    $scope.canSubmitOrder = function() {
+        return !isNaN(parseFloat($scope.coords.longitude)) && !isNaN(parseFloat($scope.coords.latitude)) && $scope.cartItems.length >= 0;
     };
 }]);
