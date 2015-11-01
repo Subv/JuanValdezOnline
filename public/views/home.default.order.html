@@ -30,7 +30,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-3">
                 <div class="form-group"></div>
-                <button id="addToCart" ng-show="selectedCoffee != undefined && selectedSize.Name != undefined" ng-click="addItemToCart()" class="btn btn-default"><i class="fa fa-cart-arrow-down"></i> Agregar al carrito</button>
+                <button id="addToCart" ng-class="{ disabled: !canAddToCart() }" ng-click="addItemToCart()" class="btn btn-default"><i class="fa fa-cart-arrow-down"></i> Agregar al carrito</button>
             </div>
         </div>
     </div>

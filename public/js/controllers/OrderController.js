@@ -18,7 +18,7 @@ angular.module('OrderCtrl', ['ngGeolocation', 'CartSrv', 'CoffeeSrv'])
     };
 
     $scope.addItemToCart = function() {
-        if ($scope.selectedCoffee !== undefined && $scope.selectedSize.Name !== undefined) {
+        if ($scope.canAddToCart()) {
             CartService.AddItem({ 
                 Name: $scope.selectedCoffee.Name, 
                 Size: $scope.selectedSize.Name, 
@@ -41,8 +41,12 @@ angular.module('OrderCtrl', ['ngGeolocation', 'CartSrv', 'CoffeeSrv'])
     };
 
     $scope.confirm = function() {
-        if ($state.cartItems.length == 0)
+        if ($scope.cartItems.length == 0)
             return;
         $state.go("home.default.pay");
+    };
+
+    $scope.canAddToCart = function() {
+        return $scope.selectedCoffee != undefined && $scope.selectedSize != undefined;
     };
 }]);
