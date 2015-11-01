@@ -24,8 +24,10 @@ module.exports = function(app) {
 
         // Verificar que el usuario no exista
         Users.where({ Username: req.body.username }).count(function(err, count) {
-            if (err)
+            if (err) {
+                console.log(err);
                 res.send(err);
+            }
 
             if (count !== 0) {
                 res.json({ result: 0, error: 'User already exists' });

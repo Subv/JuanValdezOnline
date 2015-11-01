@@ -1,16 +1,11 @@
 <form>
     <div class="row">
         <div class="col-md-3">
-            Bienvenido {{firstName}}
+            <span class="welcome">Bienvenido {{firstName}} </span>
         </div>
         <div class="col-md-8"></div>
         <div class="col-md-1">
             <button class="btn btn-default" ng-click="logout()">Logout</button>
-        </div>
-    </div>
-    <div class="row" ng-show="currState.current.name == 'home.default.pay'">
-        <div class="col-md-3">
-            <button type="button" class="btn btn-default" ng-click="goToOrder()">Back to order</button>
         </div>
     </div>
     <div ui-view></div>

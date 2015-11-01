@@ -1,1 +1,31 @@
-Paying
+<div class="row">
+    <div class="col-md-6">
+        <span class="spacer"></span>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Tienes <b>{{points}}</b> puntos disponibles</p>
+            </div>
+        </div>
+        <div class="form-group">
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label for="paymentMethod">Escoge el tipo de pago: </label>
+                    <select ng-model="selectedPaymentMethod" id="paymentMethod" class="form-control">
+                        <option value="">Selecciona un método de pago</option> 
+                        <option value="0">Puntos</option>
+                        <option value="1">Tarjeta</option> 
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="alert alert-danger" ng-show="mostrarAlert()" role="alert"><i class="fa fa-exclamation-triangle"></i>
+                No tienes puntos suficientes
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
