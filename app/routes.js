@@ -2,6 +2,7 @@ var basicAuth = require("basic-auth");
 
 var Users = require("./models/users");
 var Coffee = require("./models/coffee");
+var Order = require("./models/order");
 
 var auth = function (req, res, next) {
     function unauthorized(res) {
@@ -101,15 +102,16 @@ module.exports = function(app) {
             $or: condition.Filters
         }).exec(function(err, coffees) {
             var price = 0;
-            var temp = {};
+            var flattened = {};
 
             coffees.forEach(function(coffee) {
-                temp[coffee.Name + coffee.Sizes.Name] = coffee;
+                flattened[coffee.Name + coffee.Sizes.Name] = coffee;
             });
 
             req.body.items.forEach(function(item) {
-                var val = temp[item.Name + item.Size].Sizes.Price * item.Amount;
-                console.log(item.Name + " costs " + temp[item.Name + item.Size].Sizes.Price + " * " + item.Amount + " = " + val);
+                var val = flattened[item.Name + item.Size].Sizes.Price * item.Amount;
+                flattened[item.Name + item.Size].Amount = item.Amount;
+                console.log(item.Name + " costs " + flattened[item.Name + item.Size].Sizes.Price + " * " + item.Amount + " = " + val);
                 price += val;
             });
 
@@ -124,6 +126,35 @@ module.exports = function(app) {
                     res.send(err);
                 
                 if (dbUser) {
+                    var save_order = function() {
+                        var obj = {
+                            User: dbUser._id,
+                            Pago: parseInt(req.body.method),
+                            Latitude: req.body.coords.latitude,
+                            Longitude: req.body.coords.longitude,
+                            Items: []
+                        };
+
+                        for (var key in flattened) {
+                            if (!flattened.hasOwnProperty(key))
+                                continue;
+
+                            var it = flattened[key];
+                            obj.Items.push({
+                                Coffee: it._id,
+                                Amount: it.Amount,
+                                Size: it.Sizes.Name,
+                                Price: it.Amount * it.Sizes.Price
+                            });
+                        };
+
+                        var new_order = new Order(obj);
+                        new_order.save(function(err) {
+                            console.log("Order saved");
+                            console.log(new_order);
+                        });
+                    };
+
                     // Pay with points
                     if (req.body.method == "0") {
                         if (dbUser.Points < price) {
@@ -136,6 +167,7 @@ module.exports = function(app) {
                         dbUser.save(function(err) {
                             if (err)
                                 res.send(err);
+                            save_order();
                             res.send({ result: 1, user: dbUser });
                         });
                     } else if (req.body.method == "1") { // Pay with credit card
@@ -144,8 +176,12 @@ module.exports = function(app) {
                         dbUser.save(function(err) {
                             if (err)
                                 res.send(err);
+                            save_order();
                             res.send({ result: 1, user: dbUser });
                         });
+                    } else {
+                        res.send({ result: 0, error: "Invalid payment method", user: dbUser });
+                        return;
                     }
                 } else {
                     res.send(401);

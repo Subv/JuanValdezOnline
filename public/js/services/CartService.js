@@ -37,7 +37,8 @@ angular.module("CartSrv", []).factory("CartService", ["$rootScope", "$http", fun
     service.Pay = function(method, callback) {
         $http.post("/api/pay", {
             method: method,
-            items: service.items
+            items: service.items,
+            coords: service.location
         }).success(function(response) {
             callback(response);
         });
