@@ -28,7 +28,10 @@ angular.module('PayCtrl', ['CartSrv', 'LoginSrv'])
         CartService.Pay($scope.selectedPaymentMethod, function(response) {
             console.log("Response: ");
             console.log(response);
-            LoginService.SetUserInfo(response.user);
+
+            // Solo reasigna el usuario si viene en la respuesta
+            if (response.user)
+                LoginService.SetUserInfo(response.user);
 
             if (response.result == 0) {
                 alert(response.error);

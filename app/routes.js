@@ -101,6 +101,15 @@ module.exports = function(app) {
         }).unwind("Sizes").match({
             $or: condition.Filters
         }).exec(function(err, coffees) {
+            if (err)
+                res.send(err);
+
+            if (!coffees) {
+                // No se encontraron cafés, la orden es inválida
+                res.send({ result: 0, error: "Orden invalida" });
+                return;
+            }
+
             var price = 0;
             var flattened = {};
 

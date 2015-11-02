@@ -52,6 +52,6 @@ angular.module('OrderCtrl', ['ngGeolocation', 'CartSrv', 'CoffeeSrv'])
     };
 
     $scope.canSubmitOrder = function() {
-        return !isNaN(parseFloat($scope.coords.longitude)) && !isNaN(parseFloat($scope.coords.latitude)) && $scope.cartItems.length >= 0;
+        return !isNaN(parseFloat($scope.coords.longitude)) && !isNaN(parseFloat($scope.coords.latitude)) && $scope.cartItems.length > 0;
     };
 }]);
